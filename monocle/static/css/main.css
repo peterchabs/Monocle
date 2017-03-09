@@ -182,3 +182,46 @@
     margin-bottom: 0;
     font-weight: initial;
 }
+
+.swal2-title{
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.swal2-spacer{
+    height: 0px !important;
+}
+
+.gym-pokemons{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 1em 0;
+    overflow-y: scroll;
+    max-height: 60vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gym-pokemon {
+    text-align: center;
+    font-size: 14px;
+}
+
+.gym-pokemon > img{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    .gym-label{
+        font-size: 50%;
+    }
+    .swal2-content > h3{
+        font-size: 18px;
+        margin: 5px 0;
+    }
+}

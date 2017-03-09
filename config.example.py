@@ -137,6 +137,12 @@ LOGIN_TIMEOUT = 2.5
 # disable if your workers already have more than enough points to visit
 MORE_POINTS = True
 
+# Allow scan gym for details
+FORT_DETAILS = False
+
+# Minimun time in seconds before processing gym details again.
+FORT_DETAILS_TIME = 600
+
 # Set to True to kill the scanner when a newer version is forced
 #FORCED_KILL = False
 
