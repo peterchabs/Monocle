@@ -804,19 +804,19 @@ def get_fort_pokemon(session, fort_id):
             fp.iv_defense,
             fp.iv_stamina,
             fp.move_1,
-            fp.move_2
-        FROM fort_detail fd
-            JOIN forts on forts.external_id = fd.external_id
-            JOIN fort_pokemon as fp on fd.pokemon_uid = fp.pokemon_uid
-            JOIN fort_player as fpl on fd.player_name = fpl.name
-        WHERE forts.id = {fort_id}
-        AND (fd.external_id, fd.last_modified) IN (
-            SELECT external_id, MAX(last_modified)
+            fp.move_2,
+            fd.last_modified
+        FROM forts as ft
+            JOIN fort_detail fd on ft.external_id = fd.external_id
+            JOIN fort_pokemon fp on fd.pokemon_uid = fp.pokemon_uid
+            JOIN fort_player fpl on fd.player_name = fpl.name
+        WHERE ft.id = {fort_id}
+        AND fd.last_modified = (
+            SELECT MAX(last_modified)
             FROM fort_detail
-            WHERE external_id = forts.external_id
-            GROUP BY external_id
+            WHERE external_id = ft.external_id
         )
-        ORDER BY cp ASC
+        ORDER BY CP ASC
     '''.format(fort_id=fort_id))
     return query.fetchall()
 
