@@ -15,6 +15,7 @@ from .names import MOVES, POKEMON
 from .shared import get_logger, SessionManager, LOOP, run_threaded
 from . import sanitized as conf
 
+from base64 import b64encode
 
 WEBHOOK = False
 if conf.NOTIFY:
@@ -766,11 +767,13 @@ class Notifier:
         data = {
             'type': "raid",
             'message': {
+                "gym_id": b64encode(raid['external_id'].encode('utf-8')),
                 "raid_seed": raid['raid_seed'],
                 "pokemon_id": raid.get('pokemon_id', 0),
                 "cp": raid.get('cp', 0),
                 "move_1": raid.get('move_1', 0),
                 "move_2": raid.get('move_2', 0),
+                "spawn": raid['raid_spawn'],
                 "start": raid['raid_start'],
                 "end": raid['raid_end'],
                 "level": raid['raid_level'],
